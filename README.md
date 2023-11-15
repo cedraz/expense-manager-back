@@ -26,6 +26,7 @@ Aplicação para gerenciamento de despesas e cobranças.
 - [ ] O usuário deve poder cadastrar uma nova despesa
 - [ ] O usuário deve poder editar uma despesa cadastrada
 - [ ] O usuário deve poder excluir uma despesa cadastrada
+- [ ] O usuário deve poder fazer upload de um arquivo pdf com a fatura do cartão de crédito
 - [ ] O usuário deve poder listar todas as cobranças cadastradas
 - [ ] O usuário deve poder cadastrar uma nova cobrança
 - [ ] O usuário deve poder excluir uma cobrança cadastrada
