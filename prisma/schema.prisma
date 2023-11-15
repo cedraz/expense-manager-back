@@ -11,10 +11,49 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+  id            String       @id @default(uuid())
+  name          String
+  email         String       @unique
+  password_hash String
+  CreditCard    CreditCard[]
+  Charge        Charge[]
 
   @@map("users")
+}
+
+model CreditCard {
+  id        String    @id @default(uuid())
+  card_name String
+  bank      String
+  Expense   Expense[]
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@unique([user_id, card_name], name: "unique_credit_card_per_user")
+  @@map("credit-cards")
+}
+
+model Expense {
+  id          String   @id @default(uuid())
+  description String
+  amount      Decimal
+  date        DateTime
+
+  credit_card    CreditCard @relation(fields: [credit_card_id], references: [id])
+  credit_card_id String
+
+  @@map("expenses")
+}
+
+model Charge {
+  id          String   @id @default(uuid())
+  description String
+  amount      Decimal
+  date        DateTime
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("collections")
 }
