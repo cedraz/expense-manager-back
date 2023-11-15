@@ -4,18 +4,19 @@
 
 Aplicação para gerenciamento de despesas e cobranças.
 
-## Comandos úteis
+## Como rodar o back-end do projeto
 
 - 'npm run dev' para rodar a aplicação em modo de desenvolvimento
 - 'npx prisma studio' para abrir a interface do prisma
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas no Back-end
 
 - Node.js
 - TypeScript
 - Fastify
 - Prisma
 - PostgreSQL
+- Zod
 
 ## RFs (Requisitos funcionais)
 
