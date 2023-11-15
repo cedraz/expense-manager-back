@@ -15,6 +15,7 @@ Aplicação para gerenciamento de despesas e cobranças.
 
 ## Como rodar o back-end do projeto
 
+- 'docker compose up -d' para rodar o banco de dados (utilize o comando 'sudo' caso esteja no linux)
 - 'npm run dev' para rodar a aplicação em modo de desenvolvimento
 - 'npx prisma studio' para abrir a interface do prisma
 
