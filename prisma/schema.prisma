@@ -15,19 +15,19 @@ model User {
   name          String
   email         String       @unique
   password_hash String
-  CreditCard    CreditCard[]
-  Charge        Charge[]
+  created_at    DateTime     @default(now())
+  CreditCards   CreditCard[]
+  Charges       Charge[]
 
   @@map("users")
 }
 
 model CreditCard {
   id        String    @id @default(uuid())
-  card_name String
-  bank      String
-  Expense   Expense[]
+  card_name String    @unique
+  Expenses  Expense[]
 
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id String
 
   @@unique([user_id, card_name], name: "unique_credit_card_per_user")
@@ -38,7 +38,7 @@ model Expense {
   id          String   @id @default(uuid())
   description String
   amount      Decimal
-  date        DateTime
+  date        DateTime @default(now())
 
   credit_card    CreditCard @relation(fields: [credit_card_id], references: [id])
   credit_card_id String
@@ -50,10 +50,10 @@ model Charge {
   id          String   @id @default(uuid())
   description String
   amount      Decimal
-  date        DateTime
+  date        DateTime @default(now())
 
-  user    User   @relation(fields: [user_id], references: [id])
   user_id String
+  owner   User   @relation(fields: [user_id], references: [id])
 
   @@map("collections")
 }

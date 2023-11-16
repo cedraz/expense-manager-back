@@ -21,7 +21,7 @@ Aplicação para gerenciamento de despesas e cobranças.
 
 ## RFs (Requisitos funcionais)
 
-- [ ] O usuário deve poder se cadastrar na aplicação
+- [x] O usuário deve poder se cadastrar na aplicação
 - [ ] O usuário deve poder se autenticar na aplicação
 - [ ] O usuário deve poder cadastrar cartões de crédito
 - [ ] O usuário deve poder listar todas as despesas cadastradas em um cartão de crédito

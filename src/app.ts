@@ -1,11 +1,22 @@
 import fastify from 'fastify'
-import { appRoutes } from './http/routes'
+import fastifyJwt from '@fastify/jwt'
 import { ZodError } from 'zod'
 import { env } from './env'
 
+// Routes
+import { userRoutes } from './http/controllers/users/routes'
+import { creditCardRoutes } from './http/controllers/credit-cards/routes'
+import { expenseRoutes } from './http/controllers/expenses/routes'
+
 export const app = fastify()
 
-app.register(appRoutes)
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET
+})
+
+app.register(userRoutes)
+app.register(creditCardRoutes)
+app.register(expenseRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
