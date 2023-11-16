@@ -15,12 +15,13 @@ Aplicação para gerenciamento de despesas e cobranças.
 
 ## Como rodar o back-end do projeto
 
+- 'docker compose up -d' para rodar o banco de dados (utilize o comando 'sudo' caso esteja no linux)
 - 'npm run dev' para rodar a aplicação em modo de desenvolvimento
 - 'npx prisma studio' para abrir a interface do prisma
 
 ## RFs (Requisitos funcionais)
 
-- [ ] O usuário deve poder se cadastrar na aplicação
+- [x] O usuário deve poder se cadastrar na aplicação
 - [ ] O usuário deve poder se autenticar na aplicação
 - [ ] O usuário deve poder cadastrar cartões de crédito
 - [ ] O usuário deve poder listar todas as despesas cadastradas em um cartão de crédito
