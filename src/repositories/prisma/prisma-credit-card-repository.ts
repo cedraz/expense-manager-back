@@ -11,9 +11,10 @@ export class PrismaCreditCardRepository implements CreditCardsRepository {
     return creditCard
   }
 
-  async findByName(cardName: string) {
-    const creditCard = await prisma.creditCard.findUnique({
+  async findByName(cardName: string, userId: string) {
+    const creditCard = await prisma.creditCard.findFirst({
       where: {
+        user_id: userId,
         card_name: cardName
       }
     })
@@ -31,8 +32,11 @@ export class PrismaCreditCardRepository implements CreditCardsRepository {
     return creditCard
   }
 
-  async findAll() {
+  async findAll(userId: string) {
     const creditCards = await prisma.creditCard.findMany({
+      where: {
+        user_id: userId
+      },
       select: {
         id: true,
         card_name: true,

@@ -6,6 +6,7 @@ import { CreditCardAlreadyExistsError } from './errors/credit-card-already-exist
 interface CreditCardUseCaseRequest {
   id: string
   cardName: string
+  userId: string
 }
 
 interface CreditCardUseCaseResponse{
@@ -15,7 +16,7 @@ interface CreditCardUseCaseResponse{
 export class EditCreditCarduseCase {
   constructor(private creditCardsRepository: CreditCardsRepository) {}
 
-  async handle({id, cardName}: CreditCardUseCaseRequest): Promise<CreditCardUseCaseResponse> {
+  async handle({id, cardName, userId}: CreditCardUseCaseRequest): Promise<CreditCardUseCaseResponse> {
     
     const creditCard = await this.creditCardsRepository.findById(id)
 
@@ -23,7 +24,7 @@ export class EditCreditCarduseCase {
       throw new InvalidCredentialsError()
     }
 
-    const creditCardAlreadyExists = await this.creditCardsRepository.findByName(cardName)
+    const creditCardAlreadyExists = await this.creditCardsRepository.findByName(cardName, userId)
 
     if (creditCardAlreadyExists) {
       throw new CreditCardAlreadyExistsError()

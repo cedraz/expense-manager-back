@@ -10,14 +10,38 @@ export class PrismaExpensesRepository implements ExpensesRepository {
     
     return expense
   }
-  
-  async findById(id: string) {
-    const expense = await prisma.expense.findUnique({
+
+  async findAll(creditCardId: string) {
+    const expenses = await prisma.expense.findMany({
       where: {
-        id
+        credit_card_id: creditCardId
       }
     })
     
+    return expenses
+  }
+
+  async findById(expenseId: string) {
+    const expense = await prisma.expense.findUnique({
+      where: {
+        id: expenseId
+      }
+    })
+
+    return expense
+  }
+
+  async update(description: string, amount: number, expenseId: string) {
+    const expense = await prisma.expense.update({
+      where: {
+        id: expenseId
+      },
+      data:{
+        description,
+        amount
+      }
+    })
+
     return expense
   }
 }

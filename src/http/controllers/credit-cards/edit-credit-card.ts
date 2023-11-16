@@ -13,6 +13,7 @@ export async function editCreditCard(request: FastifyRequest, reply: FastifyRepl
   })
 
   const { id }: RequestParams = request.params as RequestParams
+  const userId = request.user.sub
   const { cardName } = createCreditCardBodySchema.parse(request.body)
 
   try {
@@ -21,7 +22,8 @@ export async function editCreditCard(request: FastifyRequest, reply: FastifyRepl
 
     const { newCreditCard } = await editCreditCardUseCase.handle({
       id,
-      cardName
+      cardName,
+      userId
     })
 
     return reply.status(200).send(newCreditCard)

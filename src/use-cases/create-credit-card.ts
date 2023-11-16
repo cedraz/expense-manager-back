@@ -15,14 +15,14 @@ export class CreditCardUseCase {
   constructor(private creditCardsRepository: CreditCardsRepository) {}
 
   async handle({userId, cardName}: CreditCardUseCaseRequest): Promise<CreditCardUseCaseResponse> {
-    const creditCardWithSameName = await this.creditCardsRepository.findByName(cardName)
-    
+    const creditCardWithSameName = await this.creditCardsRepository.findByName(cardName, userId)
+
     if (creditCardWithSameName) {
       throw new CreditCardAlreadyExistsError()
     }
 
     const creditCard = await this.creditCardsRepository.create({card_name: cardName, user_id: userId})
-
+    
     return { creditCard }
   }
 }

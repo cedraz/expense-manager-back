@@ -24,7 +24,7 @@ model User {
 
 model CreditCard {
   id        String    @id @default(uuid())
-  card_name String    @unique
+  card_name String
   Expenses  Expense[]
 
   user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
