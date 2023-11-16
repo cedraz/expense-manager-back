@@ -22,8 +22,8 @@ Aplicação para gerenciamento de despesas e cobranças.
 ## RFs (Requisitos funcionais)
 
 - [x] O usuário deve poder se cadastrar na aplicação
-- [ ] O usuário deve poder se autenticar na aplicação
-- [ ] O usuário deve poder cadastrar cartões de crédito
+- [x] O usuário deve poder se autenticar na aplicação
+- [x] O usuário deve poder cadastrar cartões de crédito
 - [ ] O usuário deve poder listar todas as despesas cadastradas em um cartão de crédito
 - [ ] O usuário deve poder cadastrar uma nova despesa
 - [ ] O usuário deve poder editar uma despesa cadastrada
@@ -36,11 +36,11 @@ Aplicação para gerenciamento de despesas e cobranças.
 
 ## RNs (Regras de negócio)
 
-- [ ] O usuário não pode se cadastrar com um e-mail duplicado
-- [ ] O usuário não pode cadastrar uma despesa com um cartão de crédito inexistente
+- [x] O usuário não pode se cadastrar com um e-mail duplicado
+- [x] O usuário não pode cadastrar uma despesa com um cartão de crédito inexistente
 
 ## RNFs (Requisitos não funcionais)
 
-- [ ] A senha do usuário precisa ser criptografada
+- [x] A senha do usuário precisa ser criptografada
 - [ ] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL
-- [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
+- [x] O usuário deve ser identificado por um JWT (JSON Web Token)

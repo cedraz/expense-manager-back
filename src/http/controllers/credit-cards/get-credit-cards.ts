@@ -8,7 +8,8 @@ export async function getCreditCards(request: FastifyRequest, reply: FastifyRepl
   const creditCardsRepository = new PrismaCreditCardRepository()
   const creditCardUseCase = new GetCreditCardsUseCase(creditCardsRepository)
 
-  const {creditCards} = await creditCardUseCase.handle()
+  const userId = request.user.sub
+  const {creditCards} = await creditCardUseCase.handle(userId)
 
   return reply.status(200).send(creditCards)
 }

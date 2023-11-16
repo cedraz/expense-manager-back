@@ -1,6 +1,7 @@
 import { Expense } from '@prisma/client'
 import { ExpensesRepository } from '@/repositories/expenses-repository'
-import { ExpenseAlreadyExistsError } from './errors/expense-already-exists-error'
+import { CreditCardsRepository } from '@/repositories/credit-cards-repository'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 interface expenseUseCaseRequest {
     description: string
@@ -13,18 +14,17 @@ interface expenseUseCaseResponse{
 }
 
 export class CreateExpenseUseCase {
-  constructor(private expensesRepository: ExpensesRepository) {}
+  constructor(private expensesRepository: ExpensesRepository, private creditCardRepository: CreditCardsRepository) {}
 
   async handle({description, amount, creditCardId}: expenseUseCaseRequest): Promise<expenseUseCaseResponse> {
 
-    const expenseAlreadyExists = await this.expensesRepository.findById(creditCardId)
+    const creditCard = await this.creditCardRepository.findById(creditCardId)
 
-    if (expenseAlreadyExists) {
-      throw new ExpenseAlreadyExistsError()
+    if (!creditCard) {
+      throw new InvalidCredentialsError()
     }
- 
-    const expense = await this.expensesRepository.create({description, amount, credit_card_id: creditCardId})
 
+    const expense = await this.expensesRepository.create({description, amount, credit_card_id: creditCardId})
     return { expense }
   }
 }

@@ -1,10 +1,15 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { CreditCardAlreadyExistsError } from '@/use-cases/errors/credit-card-already-exists-error'
-import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-repository'
-import { CreateExpenseUseCase } from '@/use-cases/create-expense'
 import { RequestParams } from '@/@types/params'
-import { ExpenseAlreadyExistsError } from '@/use-cases/errors/expense-already-exists-error'
+
+import { CreateExpenseUseCase } from '@/use-cases/create-expense'
+
+// Repositories
+import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-repository'
+import { PrismaCreditCardRepository } from '@/repositories/prisma/prisma-credit-card-repository'
+
+// Error
+import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
 
 export async function createExpense(request: FastifyRequest, reply: FastifyReply) {
   const createCreditCardBodySchema = z.object({
@@ -17,7 +22,8 @@ export async function createExpense(request: FastifyRequest, reply: FastifyReply
   
   try {
     const expensesRepository = new PrismaExpensesRepository()
-    const expenseUseCase = new CreateExpenseUseCase(expensesRepository)
+    const creditCardsRepository = new PrismaCreditCardRepository()
+    const expenseUseCase = new CreateExpenseUseCase(expensesRepository, creditCardsRepository)
 
     const { expense } = await expenseUseCase.handle({
       description, 
@@ -27,7 +33,7 @@ export async function createExpense(request: FastifyRequest, reply: FastifyReply
 
     return reply.status(200).send(expense)
   } catch (error) {
-    if (error instanceof ExpenseAlreadyExistsError) {
+    if (error instanceof InvalidCredentialsError) {
       return reply.status(409).send({message: error.message})
     }
   

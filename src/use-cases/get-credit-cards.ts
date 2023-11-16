@@ -8,8 +8,8 @@ interface CreditCardUseCaseResponse{
 export class GetCreditCardsUseCase {
   constructor(private creditCardsRepository: CreditCardsRepository) {}
 
-  async handle(): Promise<CreditCardUseCaseResponse> {
-    const creditCards = await this.creditCardsRepository.findAll()
+  async handle(userId: string): Promise<CreditCardUseCaseResponse> {
+    const creditCards = await this.creditCardsRepository.findAll(userId)
     return { creditCards }
   }
 }

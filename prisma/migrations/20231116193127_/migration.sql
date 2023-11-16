@@ -23,7 +23,7 @@ CREATE TABLE "expenses" (
     "id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "credit_card_id" TEXT NOT NULL,
 
     CONSTRAINT "expenses_pkey" PRIMARY KEY ("id")
@@ -34,7 +34,7 @@ CREATE TABLE "collections" (
     "id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT NOT NULL,
 
     CONSTRAINT "collections_pkey" PRIMARY KEY ("id")
@@ -48,15 +48,6 @@ CREATE UNIQUE INDEX "credit-cards_card_name_key" ON "credit-cards"("card_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "credit-cards_user_id_key" ON "credit-cards"("user_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "credit-cards_user_id_card_name_key" ON "credit-cards"("user_id", "card_name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "expenses_credit_card_id_key" ON "expenses"("credit_card_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "collections_user_id_key" ON "collections"("user_id");
 
 -- AddForeignKey
 ALTER TABLE "credit-cards" ADD CONSTRAINT "credit-cards_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
