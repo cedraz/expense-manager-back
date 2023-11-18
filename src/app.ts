@@ -2,7 +2,7 @@ import fastify from 'fastify'
 import fastifyJwt from '@fastify/jwt'
 import { ZodError } from 'zod'
 import { env } from './env'
-import cors from '@fastify/cors'
+import fastifyCors from 'fastify-cors'
 
 // Routes
 import { userRoutes } from './http/controllers/users/routes'
@@ -15,7 +15,7 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET
 })
 
-app.register(cors, {
+app.register(fastifyCors, {
   origin: true, // Ou '*' para permitir de qualquer origem
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Authorization', 'Content-Type'],
