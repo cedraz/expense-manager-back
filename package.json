@@ -29,7 +29,6 @@
     "vitest": "0.34.6"
   },
   "dependencies": {
-    "@fastify/cors": "8.4.1",
     "@fastify/jwt": "7.2.3",
     "@prisma/client": "5.5.2",
     "bcryptjs": "2.4.3",
