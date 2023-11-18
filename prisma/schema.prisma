@@ -37,7 +37,7 @@ model CreditCard {
 model Expense {
   id          String   @id @default(uuid())
   description String
-  amount      Decimal
+  amount      Int
   date        DateTime @default(now())
 
   credit_card    CreditCard @relation(fields: [credit_card_id], references: [id])

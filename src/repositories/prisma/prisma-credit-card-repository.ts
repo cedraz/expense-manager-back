@@ -40,7 +40,8 @@ export class PrismaCreditCardRepository implements CreditCardsRepository {
       select: {
         id: true,
         card_name: true,
-        user_id: false
+        user_id: false,
+        Expenses: true
       }
     })
 

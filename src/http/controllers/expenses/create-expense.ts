@@ -14,7 +14,7 @@ import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-
 export async function createExpense(request: FastifyRequest, reply: FastifyReply) {
   const createCreditCardBodySchema = z.object({
     description: z.string().min(4).max(26),
-    amount: z.number().min(0).max(10000),
+    amount: z.number().min(0).max(100000),
   })
     
   const { id }: RequestParams = request.params as RequestParams
