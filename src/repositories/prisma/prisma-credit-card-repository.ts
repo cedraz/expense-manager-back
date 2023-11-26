@@ -60,4 +60,14 @@ export class PrismaCreditCardRepository implements CreditCardsRepository {
 
     return creditCard
   }
+
+  async delete(id: string) {
+    const creditCard = await prisma.creditCard.delete({
+      where: {
+        id
+      }
+    })
+
+    return creditCard
+  }
 }

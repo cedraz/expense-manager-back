@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { EditExpenseUseCase } from '@/use-cases/edit-expense'
+import { EditExpenseUseCase } from '@/use-cases/expenses/edit-expense'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
 import { CreditCardAlreadyExistsError } from '@/use-cases/errors/credit-card-already-exists-error'
 import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-repository'
@@ -8,8 +8,8 @@ import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-
 
 export async function editExpense(request: FastifyRequest, reply: FastifyReply) {
   const createCreditCardBodySchema = z.object({
-    description: z.string().min(6).max(40),
-    amount: z.number().min(0).max(10000),
+    description: z.string().min(1).max(40),
+    amount: z.number().min(0).max(1000000),
   })
 
   const { expenseId } = request.params as { expenseId: string }

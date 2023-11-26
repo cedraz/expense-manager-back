@@ -1,5 +1,5 @@
 import { Expense } from '@prisma/client'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 import { ExpensesRepository } from '@/repositories/expenses-repository'
 
 interface ExpenseUseCaseRequest {
@@ -19,7 +19,7 @@ export class EditExpenseUseCase {
     const expense = await this.expensesRepository.findById(expenseId)
 
     if (!expense) {
-      throw new InvalidCredentialsError()
+      throw new InvalidCredentialsError('Expense not found')
     }
 
     const newExpense = await this.expensesRepository.update(description, amount, expenseId)
