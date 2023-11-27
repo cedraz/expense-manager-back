@@ -1,7 +1,7 @@
 import { expect, it, describe } from 'vitest'
-import { RegisterUseCase } from '../register'
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
-import { UserAlreadyExistsError } from '../errors/user-already-exists-error'
+import { RegisterUseCase } from '../src/use-cases/user/register'
+import { InMemoryUsersRepository } from './in-memory/in-memory-users-repository'
+import { UserAlreadyExistsError } from '../src/use-cases/errors/user-already-exists-error'
 
 describe('Register Use Case', () => {
   it('should be able to register', async () => {

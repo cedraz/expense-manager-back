@@ -11,16 +11,6 @@ export class PrismaExpensesRepository implements ExpensesRepository {
     return expense
   }
 
-  async findAll(creditCardId: string) {
-    const expenses = await prisma.expense.findMany({
-      where: {
-        credit_card_id: creditCardId
-      }
-    })
-    
-    return expenses
-  }
-
   async findById(expenseId: string) {
     const expense = await prisma.expense.findUnique({
       where: {
@@ -39,6 +29,16 @@ export class PrismaExpensesRepository implements ExpensesRepository {
       data:{
         description,
         amount
+      }
+    })
+
+    return expense
+  }
+
+  async delete(expenseId: string) {
+    const expense = await prisma.expense.delete({
+      where: {
+        id: expenseId
       }
     })
 

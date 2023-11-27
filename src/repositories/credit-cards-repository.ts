@@ -7,4 +7,5 @@ export interface CreditCardsRepository {
     findById(id: string): Promise<CreditCard | null>
     findAll(userId: string): Promise<creditCardsInterface[]>
     update(id: string, cardName: string): Promise<CreditCard>
+    delete(id: string): Promise<CreditCard>
 }

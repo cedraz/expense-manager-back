@@ -1,6 +1,6 @@
 import { CreditCardsRepository } from '@/repositories/credit-cards-repository'
 import { CreditCard } from '@prisma/client'
-import { CreditCardAlreadyExistsError } from './errors/credit-card-already-exists-error'
+import { CreditCardAlreadyExistsError } from '../errors/credit-card-already-exists-error'
 
 interface CreditCardUseCaseRequest {
     userId: string

@@ -1,7 +1,7 @@
 import { Expense } from '@prisma/client'
 import { ExpensesRepository } from '@/repositories/expenses-repository'
 import { CreditCardsRepository } from '@/repositories/credit-cards-repository'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 interface expenseUseCaseRequest {
     description: string
@@ -21,7 +21,7 @@ export class CreateExpenseUseCase {
     const creditCard = await this.creditCardRepository.findById(creditCardId)
 
     if (!creditCard) {
-      throw new InvalidCredentialsError()
+      throw new InvalidCredentialsError('Credit card not found')
     }
 
     const expense = await this.expensesRepository.create({description, amount, credit_card_id: creditCardId})

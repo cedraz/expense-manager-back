@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { PrismaCreditCardRepository } from '@/repositories/prisma/prisma-credit-card-repository'
-import { GetCreditCardsUseCase } from '@/use-cases/get-credit-cards'
+import { GetCreditCardsUseCase } from '@/use-cases/credit-cards/get-credit-cards'
 
 
 export async function getCreditCards(request: FastifyRequest, reply: FastifyReply) {

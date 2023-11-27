@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 import { RequestParams } from '@/@types/params'
 
-import { CreateExpenseUseCase } from '@/use-cases/create-expense'
+import { CreateExpenseUseCase } from '@/use-cases/expenses/create-expense'
 
 // Repositories
 import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-repository'
@@ -13,8 +13,8 @@ import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-
 
 export async function createExpense(request: FastifyRequest, reply: FastifyReply) {
   const createCreditCardBodySchema = z.object({
-    description: z.string().min(4).max(26),
-    amount: z.number().min(0).max(100000),
+    description: z.string().min(1).max(30),
+    amount: z.number().min(0).max(1000000),
   })
     
   const { id }: RequestParams = request.params as RequestParams

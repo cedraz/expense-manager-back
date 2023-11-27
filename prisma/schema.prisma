@@ -40,7 +40,7 @@ model Expense {
   amount      Int
   date        DateTime @default(now())
 
-  credit_card    CreditCard @relation(fields: [credit_card_id], references: [id])
+  credit_card    CreditCard @relation(fields: [credit_card_id], references: [id], onDelete: Cascade)
   credit_card_id String
 
   @@map("expenses")

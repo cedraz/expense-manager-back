@@ -1,7 +1,7 @@
 import { CreditCardsRepository } from '@/repositories/credit-cards-repository'
 import { CreditCard } from '@prisma/client'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
-import { CreditCardAlreadyExistsError } from './errors/credit-card-already-exists-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+import { CreditCardAlreadyExistsError } from '../errors/credit-card-already-exists-error'
 
 interface CreditCardUseCaseRequest {
   id: string
@@ -21,7 +21,7 @@ export class EditCreditCarduseCase {
     const creditCard = await this.creditCardsRepository.findById(id)
 
     if (!creditCard) {
-      throw new InvalidCredentialsError()
+      throw new InvalidCredentialsError('Credit card not found')
     }
 
     const creditCardAlreadyExists = await this.creditCardsRepository.findByName(cardName, userId)
