@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "npm install && npx tsup src --out-dir build",
+    "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "typescript": "5.2.2",
     "@rocketseat/eslint-config": "2.1.0",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.9.0",
@@ -27,7 +28,6 @@
     "vitest": "0.34.6"
   },
   "dependencies": {
-    "typescript": "^5.2.2",
     "@fastify/cors": "8.0.0",
     "@fastify/jwt": "7.2.3",
     "@prisma/client": "5.5.2",
@@ -35,8 +35,5 @@
     "dotenv": "16.3.1",
     "fastify": "4.24.3",
     "zod": "3.22.4"
-  },
-  "engines": {
-    "node": ">=16.13.0"
   }
 }
