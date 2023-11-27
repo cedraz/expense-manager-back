@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src --out-dir build",
+    "build": "npm install && npx tsup src --out-dir build",
     "start": "node build/server.js",
     "test": "vitest run",
     "test:watch": "vitest"
