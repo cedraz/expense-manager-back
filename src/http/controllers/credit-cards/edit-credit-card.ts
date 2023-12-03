@@ -3,7 +3,6 @@ import { z } from 'zod'
 import { PrismaCreditCardRepository } from '@/repositories/prisma/prisma-credit-card-repository'
 import { EditCreditCarduseCase } from '@/use-cases/credit-cards/edit-credit-card'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
-import { RequestParams } from '@/@types/params'
 import { CreditCardAlreadyExistsError } from '@/use-cases/errors/credit-card-already-exists-error'
 
 
@@ -12,7 +11,7 @@ export async function editCreditCard(request: FastifyRequest, reply: FastifyRepl
     cardName: z.string().min(1).max(40),
   })
 
-  const { id }: RequestParams = request.params as RequestParams
+  const { id } = request.params as {id: string}
   const userId = request.user.sub
   const { cardName } = createCreditCardBodySchema.parse(request.body)
 

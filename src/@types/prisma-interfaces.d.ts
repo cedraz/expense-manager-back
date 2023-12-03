@@ -11,3 +11,12 @@ export interface expensesInterface {
     date: Date;
     credit_card_id: string;
 }
+
+export interface chargesInterface {
+    id: string;
+    description: string;
+    amount: number;
+    date: Date;
+    user_id: string;
+}
+
