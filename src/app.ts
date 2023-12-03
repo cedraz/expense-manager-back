@@ -8,6 +8,7 @@ import cors from '@fastify/cors'
 import { userRoutes } from './http/controllers/users/routes'
 import { creditCardRoutes } from './http/controllers/credit-cards/routes'
 import { expenseRoutes } from './http/controllers/expenses/routes'
+import { chargeRoutes } from './http/controllers/charges/routes'
 
 export const app = fastify()
 
@@ -25,6 +26,7 @@ app.register(cors, {
 app.register(userRoutes)
 app.register(creditCardRoutes)
 app.register(expenseRoutes)
+app.register(chargeRoutes)
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {

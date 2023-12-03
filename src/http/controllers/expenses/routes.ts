@@ -9,7 +9,7 @@ import { deleteExpense } from './delete-expense'
 export async function expenseRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
 
-  app.post('/expenses/:id', createExpense)
+  app.post('/expenses/:userId', createExpense)
   app.put('/expenses/:expenseId', editExpense)
   app.delete('/expenses/:expenseId', deleteExpense)
 }
