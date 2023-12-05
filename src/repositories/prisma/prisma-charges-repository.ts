@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { Prisma } from '@prisma/client'
+import { Charge, Prisma } from '@prisma/client'
 import { ChargesRepository } from '../charges-repository'
 
 export class PrismaChargesRepository implements ChargesRepository {
@@ -31,16 +31,6 @@ export class PrismaChargesRepository implements ChargesRepository {
     return charges
   }
 
-  async teste(userId: string) {
-    const charges = await prisma.charge.findMany({
-      where: {
-        user_id: userId
-      }
-    })
-    
-    return charges
-  }
-
   async update(id: string, description: string) {
     const charge = await prisma.charge.update({
       where: {
@@ -62,5 +52,17 @@ export class PrismaChargesRepository implements ChargesRepository {
     })
 
     return charge
+  }
+
+  async deleteMany(ids: string[]) {
+    const deletedChargesNumber = await prisma.charge.deleteMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    })
+
+    return deletedChargesNumber
   }
 }

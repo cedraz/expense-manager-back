@@ -5,11 +5,13 @@ import { verifyJWT } from '../../middlewares/auth-middleware'
 import { createExpense } from './create-expense'
 import { editExpense } from './edit-expense'
 import { deleteExpense } from './delete-expense'
+import { deleteManyExpenses } from './delete-many-expenses'
 
 export async function expenseRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
 
-  app.post('/expenses/:userId', createExpense)
+  app.post('/expenses/:creditCardId', createExpense)
   app.put('/expenses/:expenseId', editExpense)
   app.delete('/expenses/:expenseId', deleteExpense)
+  app.delete('/expenses', deleteManyExpenses)
 }

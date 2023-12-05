@@ -7,6 +7,7 @@ interface expenseUseCaseRequest {
     description: string
     amount: number
     creditCardId: string
+    userId: string
 }
 
 interface expenseUseCaseResponse{
@@ -16,7 +17,7 @@ interface expenseUseCaseResponse{
 export class CreateExpenseUseCase {
   constructor(private expensesRepository: ExpensesRepository, private creditCardRepository: CreditCardsRepository) {}
 
-  async handle({description, amount, creditCardId}: expenseUseCaseRequest): Promise<expenseUseCaseResponse> {
+  async handle({description, amount, creditCardId, userId}: expenseUseCaseRequest): Promise<expenseUseCaseResponse> {
 
     const creditCard = await this.creditCardRepository.findById(creditCardId)
 
@@ -24,7 +25,7 @@ export class CreateExpenseUseCase {
       throw new InvalidCredentialsError('Credit card not found')
     }
 
-    const expense = await this.expensesRepository.create({description, amount, credit_card_id: creditCardId})
+    const expense = await this.expensesRepository.create({description, amount, credit_card_id: creditCardId, user_id: userId})
     return { expense }
   }
 }
