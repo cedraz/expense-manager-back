@@ -8,7 +8,7 @@ import { CreditCardAlreadyExistsError } from '@/use-cases/errors/credit-card-alr
 
 export async function editCreditCard(request: FastifyRequest, reply: FastifyReply) {
   const createCreditCardBodySchema = z.object({
-    cardName: z.string().min(1).max(40),
+    cardName: z.string().min(1).max(40)
   })
 
   const { id } = request.params as {id: string}

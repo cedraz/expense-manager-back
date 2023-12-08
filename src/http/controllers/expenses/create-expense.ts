@@ -1,12 +1,12 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { RequestParams } from '@/@types/params'
 
 import { CreateExpenseUseCase } from '@/use-cases/expenses/create-expense'
 
 // Repositories
 import { PrismaExpensesRepository } from '@/repositories/prisma/prisma-expenses-repository'
 import { PrismaCreditCardRepository } from '@/repositories/prisma/prisma-credit-card-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 
 // Error
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
@@ -23,7 +23,8 @@ export async function createExpense(request: FastifyRequest, reply: FastifyReply
   try {
     const expensesRepository = new PrismaExpensesRepository()
     const creditCardsRepository = new PrismaCreditCardRepository()
-    const expenseUseCase = new CreateExpenseUseCase(expensesRepository, creditCardsRepository)
+    const usersRepository = new PrismaUsersRepository()
+    const expenseUseCase = new CreateExpenseUseCase(expensesRepository, creditCardsRepository, usersRepository)
 
     const { expense } = await expenseUseCase.handle({
       description, 
