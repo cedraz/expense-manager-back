@@ -23,13 +23,10 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
 
     const { password_hash: pass, ...userWithoutPass } = user
 
-    const token = await reply.jwtSign({}, 
-      {
-        sign: {
-          sub: user.id,
-        }
-      }
-    )
+    const token = await reply.jwtSign({
+      sub: user.id,
+      iat: Date.now()
+    })
 
     return reply.status(200).send({token, user: userWithoutPass})
   } catch (error) {

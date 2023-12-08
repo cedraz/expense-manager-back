@@ -5,7 +5,7 @@ import { env } from './env'
 import cors from '@fastify/cors'
 
 // Routes
-import { userRoutes } from './http/controllers/users/routes'
+import { userRoutes } from './http/controllers/user/routes'
 import { creditCardRoutes } from './http/controllers/credit-cards/routes'
 import { expenseRoutes } from './http/controllers/expenses/routes'
 import { chargeRoutes } from './http/controllers/charges/routes'
