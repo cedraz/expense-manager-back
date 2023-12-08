@@ -17,7 +17,7 @@ export async function createExpense(request: FastifyRequest, reply: FastifyReply
     amount: z.number().min(0).max(1000000),
   })
     
-  const { userId } = request.params as {userId: string}
+  const { creditCardId } = request.params as {creditCardId: string}
   const { description, amount } = createCreditCardBodySchema.parse(request.body)
   
   try {
@@ -28,7 +28,8 @@ export async function createExpense(request: FastifyRequest, reply: FastifyReply
     const { expense } = await expenseUseCase.handle({
       description, 
       amount,
-      creditCardId: userId
+      creditCardId,
+      userId: request.user.sub
     })
 
     return reply.status(200).send(expense)

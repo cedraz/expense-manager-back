@@ -24,10 +24,10 @@ Aplicação para gerenciamento de despesas e cobranças.
 - [x] O usuário deve poder se cadastrar na aplicação
 - [x] O usuário deve poder se autenticar na aplicação
 - [x] O usuário deve poder cadastrar cartões de crédito
-- [ ] O usuário deve poder listar todas as despesas cadastradas em um cartão de crédito
-- [ ] O usuário deve poder cadastrar uma nova despesa
-- [ ] O usuário deve poder editar uma despesa cadastrada
-- [ ] O usuário deve poder excluir uma despesa cadastrada
+- [x] O usuário deve poder listar todas as despesas cadastradas em um cartão de crédito
+- [x] O usuário deve poder cadastrar uma nova despesa
+- [x] O usuário deve poder editar uma despesa cadastrada
+- [x] O usuário deve poder excluir uma despesa cadastrada
 - [ ] O usuário deve poder fazer upload de um arquivo pdf com a fatura do cartão de crédito
 - [ ] O usuário deve poder listar todas as cobranças cadastradas
 - [ ] O usuário deve poder cadastrar uma nova cobrança
@@ -42,5 +42,5 @@ Aplicação para gerenciamento de despesas e cobranças.
 ## RNFs (Requisitos não funcionais)
 
 - [x] A senha do usuário precisa ser criptografada
-- [ ] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL
+- [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL
 - [x] O usuário deve ser identificado por um JWT (JSON Web Token)

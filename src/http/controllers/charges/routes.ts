@@ -5,6 +5,7 @@ import { verifyJWT } from '../../middlewares/auth-middleware'
 import { createCharge } from './create-charge'
 import { getCharges } from './get-charges'
 import { deleteCharge } from './delete-charge'
+import { deleteManyCharges } from './delete-many-charges'
 
 export async function chargeRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
@@ -12,4 +13,5 @@ export async function chargeRoutes(app: FastifyInstance) {
   app.get('/charges', getCharges)
   app.post('/charges', createCharge)
   app.delete('/charges/:chargeId', deleteCharge)
+  app.delete('/charges', deleteManyCharges)
 }

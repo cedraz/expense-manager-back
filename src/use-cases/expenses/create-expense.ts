@@ -9,6 +9,7 @@ interface expenseUseCaseRequest {
     description: string
     amount: number
     creditCardId: string
+    userId: string
 }
 
 interface expenseUseCaseResponse{
@@ -17,7 +18,6 @@ interface expenseUseCaseResponse{
 
 export class CreateExpenseUseCase {
   constructor(private expensesRepository: ExpensesRepository, private creditCardRepository: CreditCardsRepository, private usersRepository: UsersRepository) {}
-
   async handle({userId, description, amount, creditCardId}: expenseUseCaseRequest): Promise<expenseUseCaseResponse> {
     const userExists = await this.usersRepository.findById(userId)
     const creditCard = await this.creditCardRepository.findById(creditCardId)
@@ -31,6 +31,7 @@ export class CreateExpenseUseCase {
     }
 
     const expense = await this.expensesRepository.create({user_id: userId, description, amount, credit_card_id: creditCardId})
+
     return { expense }
   }
 }

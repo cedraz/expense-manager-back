@@ -20,3 +20,6 @@ export interface chargesInterface {
     user_id: string;
 }
 
+interface BatchPayload {
+    count: number;
+}

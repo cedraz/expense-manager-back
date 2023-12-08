@@ -5,7 +5,7 @@ import { ExpensesRepository } from '@/repositories/expenses-repository'
 interface ExpenseUseCaseRequest {
   expenseId: string
   description: string
-amount: number
+  amount: number
 }
 
 interface ExpenseUseCaseResponse{

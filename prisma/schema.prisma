@@ -18,6 +18,7 @@ model User {
   created_at    DateTime     @default(now())
   CreditCards   CreditCard[]
   Charges       Charge[]
+  Expenses      Expense[]
 
   @@map("users")
 }
@@ -42,6 +43,9 @@ model Expense {
 
   credit_card    CreditCard @relation(fields: [credit_card_id], references: [id], onDelete: Cascade)
   credit_card_id String
+
+  user_id String
+  owner   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("expenses")
 }

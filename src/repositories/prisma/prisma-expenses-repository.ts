@@ -44,4 +44,16 @@ export class PrismaExpensesRepository implements ExpensesRepository {
 
     return expense
   }
+
+  async deleteMany(expensesIds: string[]): Promise<Prisma.BatchPayload> {
+    const deletedExpenses = await prisma.expense.deleteMany({
+      where: {
+        id: {
+          in: expensesIds
+        }
+      }
+    })
+
+    return deletedExpenses
+  }
 }
