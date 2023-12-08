@@ -6,10 +6,9 @@ import { UsersRepository } from '@/repositories/users-repository'
 
 interface expenseUseCaseRequest {
   userId: string
-    description: string
-    amount: number
-    creditCardId: string
-    userId: string
+  description: string
+  amount: number
+  creditCardId: string
 }
 
 interface expenseUseCaseResponse{
