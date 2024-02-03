@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "./node_modules/.bin/tsup src --out-dir build",
+    "build": "npx tsup src --out-dir build",
     "start": "node build/server.js",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.2.2",
     "@rocketseat/eslint-config": "2.1.0",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.9.0",
@@ -24,6 +23,7 @@
     "prisma": "5.5.2",
     "tsup": "7.2.0",
     "tsx": "4.0.0",
+    "typescript": "^5.2.2",
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6"
   },
