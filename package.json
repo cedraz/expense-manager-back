@@ -13,7 +13,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "@fastify/cors": "8.0.0",
+    "@fastify/jwt": "7.2.3",
+    "@prisma/client": "5.5.2",
+    "bcryptjs": "2.4.3",
+    "dotenv": "16.3.1",
+    "fastify": "4.24.3",
+    "zod": "3.22.4",
     "@rocketseat/eslint-config": "2.1.0",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.9.0",
@@ -26,14 +33,5 @@
     "typescript": "^5.2.2",
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6"
-  },
-  "dependencies": {
-    "@fastify/cors": "8.0.0",
-    "@fastify/jwt": "7.2.3",
-    "@prisma/client": "5.5.2",
-    "bcryptjs": "2.4.3",
-    "dotenv": "16.3.1",
-    "fastify": "4.24.3",
-    "zod": "3.22.4"
   }
 }
