@@ -28,6 +28,10 @@ app.register(creditCardRoutes)
 app.register(expenseRoutes)
 app.register(chargeRoutes)
 
+app.get('/', async (request, reply) => {
+  return { hello: 'world' }
+})
+
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
     reply
