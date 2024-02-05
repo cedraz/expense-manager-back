@@ -20,6 +20,18 @@ export interface chargesInterface {
     user_id: string;
 }
 
+export interface UpdateChargeData {
+    chargeId: string;
+    description?: string;
+    amount?: number;
+}
+
+export interface UpdateExpenseData {
+    expenseId: string;
+    description?: string;
+    amount?: number;
+}
+
 interface BatchPayload {
     count: number;
 }

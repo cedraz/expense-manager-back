@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
-import { Charge, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { ChargesRepository } from '../charges-repository'
+import { UpdateChargeData } from '@/@types/prisma-interfaces'
 
 export class PrismaChargesRepository implements ChargesRepository {
   async create(data: Prisma.ChargeUncheckedCreateInput) {
@@ -31,13 +32,24 @@ export class PrismaChargesRepository implements ChargesRepository {
     return charges
   }
 
-  async update(id: string, description: string) {
+  async update({chargeId, description, amount}: UpdateChargeData) {
+    const currentCharge = await prisma.charge.findUnique({
+      where: {
+        id: chargeId
+      }
+    })
+
+    if (!currentCharge) {
+      return null
+    }
+
     const charge = await prisma.charge.update({
       where: {
-        id
+        id: chargeId
       },
       data: {
-        description
+        description: description || currentCharge.description,
+        amount: amount || currentCharge.amount
       }
     })
 

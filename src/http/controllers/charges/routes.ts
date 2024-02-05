@@ -6,6 +6,7 @@ import { createCharge } from './create-charge'
 import { getCharges } from './get-charges'
 import { deleteCharge } from './delete-charge'
 import { deleteManyCharges } from './delete-many-charges'
+import { updateCharge } from './update-charge'
 
 export async function chargeRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
@@ -14,4 +15,5 @@ export async function chargeRoutes(app: FastifyInstance) {
   app.post('/charges', createCharge)
   app.delete('/charges/:chargeId', deleteCharge)
   app.delete('/charges', deleteManyCharges)
+  app.put('/charges/:chargeId', updateCharge)
 }

@@ -26,7 +26,7 @@ export class DeleteManyExpensesUseCase {
       }
 
       if (expenseExists && expenseExists.user_id !== userId) {
-        throw new InvalidCredentialsError('Expense does not belong to the user.')
+        throw new InvalidCredentialsError('Despesa não pertence ao usuário.')
       }
 
     }

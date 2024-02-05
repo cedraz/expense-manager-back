@@ -22,11 +22,11 @@ export class CreateExpenseUseCase {
     const creditCard = await this.creditCardRepository.findById(creditCardId)
 
     if (!userExists) {
-      throw new InvalidCredentialsError('User not found.')
+      throw new InvalidCredentialsError('Usuário não encontrado.')
     }
 
     if (!creditCard) {
-      throw new InvalidCredentialsError('Credit card not found.')
+      throw new InvalidCredentialsError('Cartão de crédito não encontrado.')
     }
 
     const expense = await this.expensesRepository.create({user_id: userId, description, amount, credit_card_id: creditCardId})
