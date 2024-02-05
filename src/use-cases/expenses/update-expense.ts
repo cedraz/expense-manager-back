@@ -4,25 +4,25 @@ import { ExpensesRepository } from '@/repositories/expenses-repository'
 
 interface ExpenseUseCaseRequest {
   expenseId: string
-  description: string
-  amount: number
+  description?: string
+  amount?: number
 }
 
 interface ExpenseUseCaseResponse{
-  newExpense: Expense
+  newExpense: Expense | null
 }
 
-export class EditExpenseUseCase {
+export class UpdateExpenseUseCase {
   constructor(private expensesRepository: ExpensesRepository) {}
 
   async handle({expenseId, description, amount}: ExpenseUseCaseRequest): Promise<ExpenseUseCaseResponse> {
     const expense = await this.expensesRepository.findById(expenseId)
 
     if (!expense) {
-      throw new InvalidCredentialsError('Expense not found')
+      throw new InvalidCredentialsError('Despesa não encontrada.')
     }
 
-    const newExpense = await this.expensesRepository.update(description, amount, expenseId)
+    const newExpense = await this.expensesRepository.update({description, amount, expenseId})
     
     return { newExpense }
   }

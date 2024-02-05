@@ -1,5 +1,5 @@
 export class CreditCardAlreadyExistsError extends Error {
   constructor() {
-    super('Credit card already exists')
+    super('Cartão de crédito já existe')
   }
 }

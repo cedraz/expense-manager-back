@@ -14,7 +14,7 @@ export class DeleteExpenseUseCase {
     const expense = await this.expensesRepository.findById(expenseId)
 
     if (!expense) {
-      throw new InvalidCredentialsError('Expense not found')
+      throw new InvalidCredentialsError('Despesa não encontrada.')
     }
 
     const deletedExpense = await this.expensesRepository.delete(expenseId)

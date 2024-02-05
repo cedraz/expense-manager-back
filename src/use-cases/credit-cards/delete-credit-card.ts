@@ -18,7 +18,7 @@ export class DeleteCreditCarduseCase {
     const creditCard = await this.creditCardsRepository.findById(id)
 
     if (!creditCard) {
-      throw new InvalidCredentialsError('Credit card not found')
+      throw new InvalidCredentialsError('Cartão de crédito não encontrado.')
     }
 
     const deletedCreditCard = await this.creditCardsRepository.delete(id)

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { LoginUseCase } from '@/use-cases/user/login'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
+import { EmailNotVerifiedError } from '@/use-cases/errors/email-not-verified-error'
 
 export async function login(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -31,6 +32,10 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
     return reply.status(200).send({token, user: userWithoutPass})
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
+      return reply.status(409).send({message: error.message})
+    }
+
+    if (error instanceof EmailNotVerifiedError) {
       return reply.status(409).send({message: error.message})
     }
 

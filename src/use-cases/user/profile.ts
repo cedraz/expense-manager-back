@@ -18,7 +18,7 @@ export class ProfileUseCase {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {
-      throw new InvalidCredentialsError('User not found')
+      throw new InvalidCredentialsError('Usuário não encontrado.')
     }
 
     return {user}

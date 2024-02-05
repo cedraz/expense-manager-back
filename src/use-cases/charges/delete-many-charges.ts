@@ -26,7 +26,7 @@ export class DeleteManyChargesUseCase {
       }
 
       if (chargesExists && chargesExists.user_id !== userId) {
-        throw new InvalidCredentialsError('Charge does not belong to the user.')
+        throw new InvalidCredentialsError('Cobrança não pertence ao usuário.')
       }
     }
 

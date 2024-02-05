@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
 import { ExpensesRepository } from '@/repositories/expenses-repository'
+import { UpdateExpenseData } from '@/@types/prisma-interfaces'
 
 export class PrismaExpensesRepository implements ExpensesRepository {
   async create(data: Prisma.ExpenseUncheckedCreateInput) {
@@ -21,14 +22,24 @@ export class PrismaExpensesRepository implements ExpensesRepository {
     return expense
   }
 
-  async update(description: string, amount: number, expenseId: string) {
+  async update({description, amount, expenseId}: UpdateExpenseData) {
+    const currentExpense = await prisma.expense.findUnique({
+      where: {
+        id: expenseId
+      }
+    })
+
+    if (!currentExpense) {
+      return null
+    }
+
     const expense = await prisma.expense.update({
       where: {
         id: expenseId
       },
-      data:{
-        description,
-        amount
+      data: {
+        description: description || currentExpense.description,
+        amount: amount || currentExpense.amount
       }
     })
 

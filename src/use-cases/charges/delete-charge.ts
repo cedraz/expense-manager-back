@@ -20,7 +20,7 @@ export class DeleteChargeUseCase {
     const chargeExists = await this.chargesRepository.findById(chargeId)
 
     if (!chargeExists) {
-      throw new InvalidCredentialsError('Charge does not exist.')
+      throw new InvalidCredentialsError('Cobrança não existe')
     }
     
     if (chargeExists) {
